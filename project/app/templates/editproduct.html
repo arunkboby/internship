@@ -1,0 +1,116 @@
+
+{% include 'header.html' %}
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Edit Product</title>
+    <style>
+        body {
+            align-items: center;
+            background-color: lightblue;
+            background-image: url("{% static 'images.jpg' %}");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            color: #000;
+        }
+        .bo
+        {
+            align-items: center;
+            margin-left: 550px;
+        }
+        button 
+        {
+            width: 100px;
+            height: 40px;
+            margin: 10px;
+            color: black;
+            background-color: greenyellow;
+            border: 3px solid aquamarine;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        h1 {
+            text-align: center;
+            color: darkblue;
+            margin-top: 30px;
+        }
+
+        .product-container 
+        {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            padding: 30px;
+        }
+
+        .product
+        {
+            width: 250px;
+            padding: 20px;
+            text-align: center;
+            box-sizing: border-box;
+        }
+
+        .product img 
+        {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .product p {
+            font-size: 18px;
+            margin: 5px 0;
+            color: #333;
+        }
+
+        .no-products {
+            text-align: center;
+            font-size: 18px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Product</h1>
+    <div class="bo">
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Name:</label>
+        <input type="text" name="name" value="{{ product.name }}"><br><br>
+
+        <label>Price:</label>
+        <input type="text" name="price" value="{{ product.price }}"><br><br>
+
+        <label>Description:</label>
+        <textarea name="description">{{ product.description }}</textarea><br><br>
+
+        <label>Warranty:</label>
+        <input type="text" name="warranty" value="{{ product.warranty }}"><br><br>
+
+        <label>Image:</label>
+        <input type="file" name="image"><br><br>
+
+        {% if product.image %}
+            <img src="{{ uploads/screenshot.png }}" width="200"><br><br>
+        {% endif %}
+
+        <button type="submit">Update</button>
+    </div>
+    </form>
+</body>
+</html>

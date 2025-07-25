@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Account - UrbanCart{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card" style="background:#232323; color:#fff; border:none; border-radius:18px;">
+      <div class="card-body">
+        <h2 class="mb-4" style="color:#d6001c;">Profile</h2>
+        <dl class="row">
+          <dt class="col-sm-4">Username</dt>
+          <dd class="col-sm-8">{{ profile.username }}</dd>
+          <dt class="col-sm-4">First Name</dt>
+          <dd class="col-sm-8">{{ profile.FirstName }}</dd>
+          <dt class="col-sm-4">Last Name</dt>
+          <dd class="col-sm-8">{{ profile.LastName }}</dd>
+          <dt class="col-sm-4">Phone</dt>
+          <dd class="col-sm-8">{{ profile.phone }}</dd>
+          <dt class="col-sm-4">User Type</dt>
+          <dd class="col-sm-8 text-capitalize">{{ profile.usertype }}</dd>
+        </dl>
+        <a href="{% url 'editprofile' %}" class="btn btn-danger mt-3" style="background:#d6001c; border:none;">Edit Profile</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

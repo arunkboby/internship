@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Orders for {{ viewed_user.username }} - UrbanCart{% endblock %}
+{% block content %}
+<h2 class="mb-4" style="color:#d6001c;">Orders for {{ viewed_user.username }}</h2>
+<table class="table table-dark table-striped" style="background:#232323; border-radius:12px;">
+  <thead>
+    <tr>
+      <th>Order ID</th>
+      <th>Date</th>
+      <th>Total Amount</th>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for order in orders %}
+    <tr>
+      <td>{{ order.id }}</td>
+      <td>{{ order.date }}</td>
+      <td>₹{{ order.totalamount }}</td>
+      <td><a href="{% url 'orderitems' order.id %}" class="btn btn-danger btn-sm" style="background:#d6001c; border:none;">View Items</a></td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="4" class="text-center">No orders found for this user.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

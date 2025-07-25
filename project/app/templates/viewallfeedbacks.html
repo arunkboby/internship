@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block title %}Order Feedback - UrbanCart{% endblock %}
+{% block content %}
+<h2 class="mb-4" style="color:#d6001c;">Feedback for Order #{{ order.id }}</h2>
+<ul class="list-group" style="background:#232323;">
+  {% for feedback in feedbacks %}
+  <li class="list-group-item" style="background:#232323; color:#fff;">
+    <strong>Rating:</strong> {{ feedback.rating }}<br>
+    <strong>Message:</strong> {{ feedback.message }}<br>
+    <small class="text-muted">By {{ feedback.userid.username }} on {{ feedback.date }}</small>
+  </li>
+  {% empty %}
+  <li class="list-group-item" style="background:#232323; color:#fff;">No feedback yet.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}My Products - UrbanCart{% endblock %}
+{% block content %}
+<h2 class="mb-4" style="color:#d6001c;">My Products</h2>
+<table class="table table-dark table-striped" style="background:#232323; border-radius:12px;">
+  <thead>
+    <tr>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Remove</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in products %}
+    <tr>
+      <td>
+        {% if product.image %}
+          <img src="{{ product.image.url }}" alt="{{ product.name }}" style="width:60px; height:60px; object-fit:cover; border-radius:8px;">
+        {% else %}
+          <div style="width:60px; height:60px; background:#181818; border-radius:8px; display:flex; align-items:center; justify-content:center; color:#888;">No Image</div>
+        {% endif %}
+      </td>
+      <td>{{ product.name }}</td>
+      <td>₹{{ product.price }}</td>
+      <td>
+        <form method="post" action="{% url 'delete_product' product.id %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete this product?');">Remove</button>
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

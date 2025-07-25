@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}All Feedback - UrbanCart{% endblock %}
+{% block content %}
+<h2 class="mb-4" style="color:#d6001c;">All Feedback</h2>
+<ul class="list-group" style="background:#232323;">
+  {% for feedback in feedbacks %}
+  <li class="list-group-item" style="background:#232323; color:#fff;">
+    <strong>Order:</strong> {{ feedback.orderid.id }}<br>
+    <strong>Rating:</strong> {{ feedback.rating }}<br>
+    <strong>Message:</strong> {{ feedback.message }}<br>
+    <small class="text-muted">By {{ feedback.userid.username }} on {{ feedback.date }}</small>
+  </li>
+  {% empty %}
+  <li class="list-group-item" style="background:#232323; color:#fff;">No feedback found.</li>
+  {% endfor %}
+</ul>
+{% endblock %}

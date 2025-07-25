@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Leave Feedback - UrbanCart{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card" style="background:#232323; color:#fff; border:none; border-radius:18px;">
+      <div class="card-body">
+        <h2 class="mb-4 text-center" style="color:#d6001c;">Leave Feedback</h2>
+        <form method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="Rating" class="form-label">Rating (1-5)</label>
+            <input type="number" class="form-control" name="Rating" min="1" max="5" required>
+          </div>
+          <div class="mb-3">
+            <label for="Message" class="form-label">Message</label>
+            <textarea class="form-control" name="Message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-danger w-100" style="background:#d6001c; border:none;">Submit Feedback</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

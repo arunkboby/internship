@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block title %}Payment Success - UrbanCart{% endblock %}
+{% block content %}
+<div class="text-center py-5">
+    <h2 class="text-success" style="color:#d6001c !important;">Payment Successful!</h2>
+    <p class="lead" style="color:#fff;">Thank you for your purchase.</p>
+    <a href="{% url 'displayorder' %}" class="btn btn-danger mt-3" style="background:#d6001c; border:none;">View Your Orders</a>
+</div>
+{% endblock %}

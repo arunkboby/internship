@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Models - ShopSmart{% endblock %}
+{% block content %}
+{% load static %}
+<div class="row g-5">
+  {% for product in products %}
+  <div class="col-12 col-md-6 col-lg-4">
+    <div class="card h-100" style="background:#232323; color:#fff; border:none; border-radius:18px; box-shadow:0 2px 24px rgba(0,0,0,0.10);">
+      {% if product.image %}
+      <img src="{{ product.image.url }}" class="card-img-top" style="background:#181818; border-radius:18px 18px 0 0; object-fit:cover; height:220px;">
+      {% else %}
+      <img src="{% static 'screenshot.png' %}" class="card-img-top" style="background:#181818; border-radius:18px 18px 0 0; object-fit:cover; height:220px;">
+      {% endif %}
+      <div class="card-body d-flex flex-column">
+        <h5 class="card-title" style="color:#fff;">{{ product.name }}</h5>
+        <p class="card-text mb-2" style="color:#ccc;">{{ product.description|truncatechars:80 }}</p>
+        <div class="mb-3">
+          <span class="fw-bold fs-5" style="color:#d6001c;">₹{{ product.price }}</span>
+          {% if product.warranty %}
+          <span class="badge bg-danger ms-2">Warranty: {{ product.warranty }} mo</span>
+          {% endif %}
+        </div>
+        <div class="mt-auto">
+          <a href="{% url 'addtocart' product.id %}" class="btn btn-primary w-100" style="background:#d6001c; border:none;">Add to Cart</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% empty %}
+  <div class="col-12">
+    <div class="alert alert-info text-center" style="background:#232323; color:#fff; border:none;">No products available.</div>
+  </div>
+  {% endfor %}
+</div>
+{% endblock %}

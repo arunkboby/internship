@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Edit Profile - UrbanCart{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <div class="card" style="background:#232323; color:#fff; border:none; border-radius:18px;">
+      <div class="card-body">
+        <h2 class="mb-4 text-center" style="color:#d6001c;">Edit Profile</h2>
+        <form method="post">
+          {% csrf_token %}
+          <div class="mb-3">
+            <label for="FirstName" class="form-label">First Name</label>
+            <input type="text" class="form-control" name="FirstName" value="{{ profile.FirstName }}" required>
+          </div>
+          <div class="mb-3">
+            <label for="LastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" name="LastName" value="{{ profile.LastName }}" required>
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="text" class="form-control" name="phone" value="{{ profile.phone }}" required>
+          </div>
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" name="username" value="{{ profile.username }}" required>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" name="email" value="{{ profile.email }}" required>
+          </div>
+          <div class="mb-3">
+            <label for="usertype" class="form-label">User Type</label>
+            <select class="form-select" name="usertype" required>
+              <option value="user" {% if profile.usertype == "user" %}selected{% endif %}>User</option>
+              <option value="seller" {% if profile.usertype == "seller" %}selected{% endif %}>Seller</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-danger w-100" style="background:#d6001c; border:none;">Update Profile</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

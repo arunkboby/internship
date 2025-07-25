@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}Seller Orders - UrbanCart{% endblock %}
+{% block content %}
+<div class="container mt-4">
+  <h2>Orders for Your Products</h2>
+  {% if order_items %}
+    <table class="table table-dark table-striped mt-3">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Ordered By</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in order_items %}
+        <tr>
+          <td>{{ item.orderid.id }}</td>
+          <td>{{ item.product.name }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.orderid.userid.username }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <div class="alert alert-info">No orders for your products yet.</div>
+  {% endif %}
+</div>
+{% endblock %}

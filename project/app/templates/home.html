@@ -1,0 +1,17 @@
+
+{% extends 'base.html' %}
+{% block title %}Home - UrbanCart{% endblock %}
+
+{% block hero %}
+<div class="hero-section">
+    <div class="hero-title" style="font-size:2.4rem;"><b>Welcome to UrbanCart</b></div>
+    <div class="hero-lead" style="font-size:1.18rem;">
+      Your one-stop shop for electronics, fashion, home essentials, and more – all at unbeatable prices.<br>
+      Fast delivery, trusted sellers, and 24/7 support.<br>
+      <b>Shop smart, only at UrbanCart.</b>
+    </div>
+    {% if not user.is_authenticated or user.is_authenticated and not user.is_superuser and user.usertype != "seller" %}
+    <a href="{% url 'display' %}" class="btn btn-cta btn-lg mt-3">Shop Now</a>
+    {% endif %}
+</div>
+{% endblock %}

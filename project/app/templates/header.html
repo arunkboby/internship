@@ -1,0 +1,89 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <style>
+    nav {
+      display: flex;
+      justify-content: flex-end;
+      padding: 10px 30px;
+    }
+
+    nav ul {
+      display: flex;
+      flex-direction: row;
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      gap: 5px;
+      
+    }
+
+    nav li {
+      margin: 0;
+    }
+
+    button {
+      width: auto;
+      height: 40px;
+      color: black;
+      background-color: greenyellow;
+      border: 2px solid aquamarine;
+      border-radius: 30px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button a {
+      text-decoration: none;
+      color: inherit;
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+      line-height: 40px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      {% if request.session.ut == "admin" %}
+      <ul>
+        <li><button><a href="/view_users">view users</a></button></li>
+        <li><button><a href="/viewallfeedbacks">view all feedbacks</a></button></li>
+
+
+        <li><button><a href="/logout">logout</a></button></li>
+      </ul>
+      {% elif request.session.ut == "user" %}
+      <ul>
+        <li><button><a href="/home">home</a></button></li>
+        <li><button><a href="/profile">profile</a></button></li>
+        <li><button><a href="/display">products</a></button></li>
+        <li><button><a href="/displaycart">viewcart</a></button></li>
+        <li><button><a href="/displayorder">vieworders</a></button></li>
+        <li><button><a href="/logout">logout</a></button></li>
+      </ul>
+      {% elif request.session.ut == "seller" %}
+      <ul>
+        <li><button><a href="/home">home</a></button></li>
+        <li><button><a href="/profile">profile</a></button></li>
+        <li><button><a href="/display">products</a></button></li>
+        <li><button><a href="/displayorder">vieworders</a></button></li>
+        <li><button><a href="/logout">logout</a></button></li>
+      </ul>
+      {% else %}
+      <ul>
+        <li><button><a href="/">home</a></button></li>
+        <li><button><a href="/register">register</a></button></li>
+        <li><button><a href="/login">login</a></button></li>
+      </ul>
+      {% endif %}
+    </nav>
+  </header>
+</body>
+</html>
